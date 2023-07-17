@@ -26,6 +26,7 @@ class PagingController<PageKeyType, ItemType>
   PagingController({
     required this.firstPageKey,
     this.invisibleItemsThreshold,
+    this.requestFirstPage = true,
   }) : super(
           PagingState<PageKeyType, ItemType>(nextPageKey: firstPageKey),
         );
@@ -37,6 +38,7 @@ class PagingController<PageKeyType, ItemType>
     PagingState<PageKeyType, ItemType> value, {
     required this.firstPageKey,
     this.invisibleItemsThreshold,
+    this.requestFirstPage = true,
   }) : super(value);
 
   ObserverList<PagingStatusListener>? _statusListeners =
@@ -53,6 +55,9 @@ class PagingController<PageKeyType, ItemType>
 
   /// List with all items loaded so far. Initially `null`.
   List<ItemType>? get itemList => value.itemList;
+
+  /// The key for the first page to be fetched.
+  final bool requestFirstPage;
 
   set itemList(List<ItemType>? newItemList) {
     value = PagingState<PageKeyType, ItemType>(

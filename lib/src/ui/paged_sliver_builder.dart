@@ -143,10 +143,12 @@ class _PagedSliverBuilderState<PageKeyType, ItemType>
         listener: () {
           final status = _pagingController.value.status;
 
-          if (status == PagingStatus.loadingFirstPage) {
-            _pagingController.notifyPageRequestListeners(
-              _pagingController.firstPageKey,
-            );
+          if (_pagingController.requestFirstPage) {
+            if (status == PagingStatus.loadingFirstPage) {
+              _pagingController.notifyPageRequestListeners(
+                _pagingController.firstPageKey,
+              );
+            }
           }
 
           if (status == PagingStatus.ongoing) {
