@@ -56,7 +56,7 @@ class PagingController<PageKeyType, ItemType>
   /// List with all items loaded so far. Initially `null`.
   List<ItemType>? get itemList => value.itemList;
 
-  /// The key for the first page to be fetched.
+  /// request first page when paged widget created
   final bool requestFirstPage;
 
   set itemList(List<ItemType>? newItemList) {
